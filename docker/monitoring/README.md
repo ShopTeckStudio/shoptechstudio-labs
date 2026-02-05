@@ -29,7 +29,7 @@ Your actual Docker host should only contain files referenced by `docker-compose.
 Example configuration files are provided in this repository and can be copied into place as needed.
 
 ### Expected Local Folder Structure
-
+```
 monitoring/
 ├── docker-compose.yml
 │
@@ -39,7 +39,7 @@ monitoring/
 └── data/
     ├── prometheus/
     └── grafana/
-
+```
 - prometheus/ contains the active Prometheus configuration
 - data/ stores persistent container data
 - Grafana, node-exporter, and cAdvisor require no host-side configuration files

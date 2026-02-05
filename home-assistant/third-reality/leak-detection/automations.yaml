@@ -1,1 +1,101 @@
+***REMEMBER NOT TO PAST THE AUTOMATION NAMES (IN ALL CAPS)***
+LEAK ALERT - LATCH ON  
+
+
+alias: Leak Alert – Latch On
+mode: single
+
+trigger:  
+  - platform: event
+    event_type: state_changed
+
+condition:
+  - condition: template
+    value_template: >
+      {{ trigger.event.data.entity_id.startswith('binary_sensor.') }}
+  - condition: template
+    value_template: >
+      {{ state_attr(trigger.event.data.entity_id, 'device_class') == 'moisture' }}
+  - condition: template
+    value_template: >
+      {{ trigger.event.data.new_state is not none }}
+  - condition: template
+    value_template: >
+      {{ trigger.event.data.new_state.state in ['wet', 'on'] }}
+  - condition: state
+    entity_id: input_boolean.leak_alert_latched
+    state: "off"
+
+action:
+  - service: input_text.set_value
+    data:
+      entity_id: input_text.last_leak_sensor
+      value: >
+        {{ area_name(trigger.event.data.entity_id)
+           or trigger.event.data.new_state.name }}
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.leak_alert_latched
+
+
+LEAK ALERT - INITIAL
+
+alias: Leak Alert – Initial Notify
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.leak_alert_latched
+    to: "on"
+
+action:
+  - service: notify.notify
+    data:
+      title: "🚨 WATER LEAK DETECTED"
+      message: >
+        {% set loc = states('input_text.last_leak_sensor') %}
+        {% if loc not in ['unknown', 'unavailable', ''] %}
+        Leak detected at {{ loc }}.
+        {% else %}
+        A water leak was detected and requires attention.
+        {% endif %}
+
+        
+LEAK ALERT - REMINDER
+
+
+alias: Leak Alert – Reminder
+triggers:
+  - minutes: /15
+    trigger: time_pattern
+conditions:
+  - condition: state
+    entity_id: input_boolean.leak_alert_latched
+    state: "on"
+actions:
+  - data:
+      title: 🚨 WATER LEAK REMINDER
+      message: >
+        Leak detected at {{ states('input_text.last_leak_sensor') }} and has not
+        been acknowledged.
+    action: notify.notify
+mode: single
+
+
+LEAK ALERT CLEARED
+
+
+alias: Leak Alert – Cleared
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.leak_alert_latched
+    to: "off"
+
+action:
+  - service: notify.notify
+    data:
+      title: "✅ Leak Alert Cleared"
+      message: "Leak alert has been acknowledged."
 

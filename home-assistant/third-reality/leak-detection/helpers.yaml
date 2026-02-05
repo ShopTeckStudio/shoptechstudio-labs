@@ -1,16 +1,23 @@
-HELPER NAME- Leak Alert Latched
+# Helpers created via Home Assistant UI
+# Settings → Devices & Services → Helpers
 
-Type- Toggle
-Name-Leak Alert Latched
+# =================================================
+# LEAK ALERT LATCHED
+# =================================================
 
----------------------------------------------
-HELPER NAME- Leak Sensor Count State On
+# Toggle Helper
+# Name: Leak Alert Latched
+# Type: Toggle (input_boolean)
 
-Type-Template
-Type-Sensor
-State-Measurement
+# =================================================
+# LEAK SENSOR COUNT STATE ON
+# =================================================
 
-Edit .yml
+# Template Helper (Sensor)
+# Name: Leak Sensor Count State On
+# State class: Measurement
+
+# Template used:
 
 {{ 
   states.binary_sensor
@@ -20,10 +27,11 @@ Edit .yml
   | count
 }}
 
----------------------------------------------
-HELPER NAME- Last Leak Sensor
+# =================================================
+# LAST LEAK SENSOR
+# =================================================
 
-Type- Text
-Name: Last Leak Sensor
-“Leave everything else default”
-“Save”
+# Text Helper
+# Name: Last Leak Sensor
+# Type: Text (input_text)
+# Leave all other options default

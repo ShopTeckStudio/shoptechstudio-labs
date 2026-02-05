@@ -14,3 +14,30 @@ Configuration files included here are examples and templates only. Environment-s
 
 As this lab evolves, additional dashboards, alerts, and tooling may be added to this stack.
 
+## Local File Structure
+
+This stack follows a consistent on-disk file structure on the host system.  
+Docker Compose references files relative to the location of `docker-compose.yml`, so the local folder layout is intentional and important.
+
+All services in this stack are defined in a single `docker-compose.yml` file, while service-specific configuration files live in their own folders alongside it.
+
+### Expected Local Folder Structure
+
+```text
+monitoring/
+├── docker-compose.yml
+├── .env.example
+├── README.md
+│
+├── prometheus/
+│   ├── prometheus.yml.example
+│   └── prometheus.yml
+│
+├── grafana/
+│   └── grafana.ini.example
+│
+├── node-exporter/
+│   └── README.md
+│
+└── cadvisor/
+    └── README.md

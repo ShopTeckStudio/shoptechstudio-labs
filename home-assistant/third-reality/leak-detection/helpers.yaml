@@ -1,10 +1,10 @@
-Helper Name- Leak Alert Latched
+HELPER NAME- Leak Alert Latched
 
 Type- Toggle
 Name-Leak Alert Latched
 
 ---------------------------------------------
-Helper Name- Leak Sensor Count State On
+HELPER NAME- Leak Sensor Count State On
 
 Type-Template
 Type-Sensor
@@ -19,8 +19,9 @@ Edit .yml
   | list
   | count
 }}
+
 ---------------------------------------------
-Helper Name- Last Leak Sensor
+HELPER NAME- Last Leak Sensor
 
 Type- Text
 Name: Last Leak Sensor

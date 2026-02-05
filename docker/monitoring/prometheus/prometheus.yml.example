@@ -9,6 +9,7 @@ scrape_configs:
           - "localhost:9090"
 
   # Add additional scrape jobs below if needed
+
   # Typical next jobs you’ll add (for context)
   # Later you’ll add jobs like:
   # node-exporter

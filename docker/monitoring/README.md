@@ -23,24 +23,15 @@ All services in this stack are defined in a single `docker-compose.yml` file, wh
 
 ### Expected Local Folder Structure
 
-```text
 monitoring/
 ├── docker-compose.yml
-├── .env.example
-├── README.md
 │
 ├── prometheus/
-│   ├── prometheus.yml.example
 │   └── prometheus.yml
 │
-├── grafana/
-│   └── grafana.ini.example
-│
-├── node-exporter/
-│   └── README.md
-│
-└── cadvisor/
-    └── README.md
+└── data/
+    ├── prometheus/
+    └── grafana/
 
 ## Now create the service directories exactly as documented: This is accomplished by running these commands in terminal
 

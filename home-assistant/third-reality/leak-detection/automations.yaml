@@ -1,6 +1,6 @@
-***REMEMBER NOT TO PAST THE AUTOMATION NAMES (IN ALL CAPS)***
-LEAK ALERT - LATCH ON  
-
+# =================================================
+# LEAK ALERT - LATCH ON  
+# =================================================
 
 alias: Leak Alert – Latch On
 mode: single
@@ -37,8 +37,9 @@ action:
     target:
       entity_id: input_boolean.leak_alert_latched
 
-
-LEAK ALERT - INITIAL
+# =================================================
+# LEAK ALERT - INITIAL NOTIFY
+# =================================================
 
 alias: Leak Alert – Initial Notify
 mode: single
@@ -60,9 +61,9 @@ action:
         A water leak was detected and requires attention.
         {% endif %}
 
-        
-LEAK ALERT - REMINDER
-
+# =================================================
+# LEAK ALERT - REMINDER
+# =================================================
 
 alias: Leak Alert – Reminder
 triggers:
@@ -81,9 +82,9 @@ actions:
     action: notify.notify
 mode: single
 
-
-LEAK ALERT CLEARED
-
+# =================================================
+# LEAK ALERT - CLEARED 
+# =================================================
 
 alias: Leak Alert – Cleared
 mode: single

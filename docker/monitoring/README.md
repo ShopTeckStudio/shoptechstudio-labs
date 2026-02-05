@@ -41,3 +41,18 @@ monitoring/
 │
 └── cadvisor/
     └── README.md
+
+## Now create the service directories exactly as documented: This is accomplished by running these commands in terminal
+
+mkdir monitoring
+cd monitoring
+
+then
+
+touch docker-compose.yml
+touch README.md
+touch .env.example
+
+Now create the service directories exactly as documented:
+
+

@@ -1,1 +1,28 @@
+Helper Name- Leak Alert Latched
 
+Type- Toggle
+Name-Leak Alert Latched
+
+---------------------------------------------
+Helper Name- Leak Sensor Count State On
+
+Type-Template
+Type-Sensor
+State-Measurement
+
+Edit .yml
+
+{{ 
+  states.binary_sensor
+  | selectattr('attributes.device_class', 'eq', 'moisture')
+  | selectattr('state', 'in', ['wet', 'on'])
+  | list
+  | count
+}}
+---------------------------------------------
+Helper Name- Last Leak Sensor
+
+Type- Text
+Name: Last Leak Sensor
+“Leave everything else default”
+“Save”

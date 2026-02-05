@@ -29,8 +29,11 @@ Your actual Docker host should only contain files referenced by `docker-compose.
 Example configuration files are provided in this repository and can be copied into place as needed.
 
 ### Expected Local Folder Structure
+
+This stack typically lives inside a parent `docker/` directory on the host.
+
 ```
-monitoring/
+docker/monitoring/
 ├── docker-compose.yml
 │
 ├── prometheus/
@@ -45,10 +48,10 @@ monitoring/
 - Grafana, node-exporter, and cAdvisor require no host-side configuration files
 
 ## Initial Setup (Docker Host)
-Run the following commands in a terminal on your Docker host:
-
+Run the following commands from your Docker stacks directory:
 
 ```
+cd docker
 mkdir monitoring
 cd monitoring
 
@@ -58,8 +61,3 @@ mkdir -p data/prometheus data/grafana
 touch docker-compose.yml
 touch prometheus/prometheus.yml
 ```
-
-
-
-
-

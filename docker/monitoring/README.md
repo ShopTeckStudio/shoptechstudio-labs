@@ -2,7 +2,7 @@
 
 This folder contains a Docker-based monitoring stack used to observe system health and container performance within a homelab environment.
 
-The stack is designed to be modular, lightweight, and easy to rebuild. All services are defined in a single `docker-compose.yml` file, while individual service configuration files live in their respective subfolders.
+The stack is designed to be modular, lightweight, and easy to rebuild. All services are defined in a single `docker-compose.yml` file, while only required runtime configuration files live in service-specific subfolders.
 
 At a high level, this stack focuses on:
 - Server resource monitoring (CPU, memory, disk, network)
@@ -19,7 +19,14 @@ As this lab evolves, additional dashboards, alerts, and tooling may be added to 
 This stack follows a consistent on-disk file structure on the host system.  
 Docker Compose references files relative to the location of `docker-compose.yml`, so the local folder layout is intentional and important.
 
-All services in this stack are defined in a single `docker-compose.yml` file, while service-specific configuration files live in their own folders alongside it.
+All services in this stack are defined in a single `docker-compose.yml` file, while only services that require host-side configuration files have folders alongside it. 
+
+⚠️ Important:
+
+The GitHub folder structure is for documentation and examples.  
+Your actual Docker host should only contain files referenced by `docker-compose.yml`.
+
+Example configuration files are provided in this repository and can be copied into place as needed.
 
 ### Expected Local Folder Structure
 
@@ -33,17 +40,26 @@ monitoring/
     ├── prometheus/
     └── grafana/
 
-## Now create the service directories exactly as documented: This is accomplished by running these commands in terminal
+- prometheus/ contains the active Prometheus configuration
+- data/ stores persistent container data
+- Grafana, node-exporter, and cAdvisor require no host-side configuration files
 
+## Initial Setup (Docker Host)
+Run the following commands in a terminal on your Docker host:
+
+
+```
 mkdir monitoring
 cd monitoring
 
-then
+mkdir prometheus
+mkdir -p data/prometheus data/grafana
 
 touch docker-compose.yml
-touch README.md
-touch .env.example
+touch prometheus/prometheus.yml
+```
 
-Now create the service directories exactly as documented:
+
+
 
 

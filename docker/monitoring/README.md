@@ -10,7 +10,7 @@ At a high level, this stack focuses on:
 - Historical visibility and trend analysis
 - A clean, reproducible setup that can be extended over time
 
-Configuration files included here are examples and templates only. Environment-specific values, secrets, and credentials are intentionally excluded.
+Configuration files included here are intentionally minimal and exclude environment-specific values, secrets, and credentials.
 
 As this lab evolves, additional dashboards, alerts, and tooling may be added to this stack.
 
@@ -38,13 +38,9 @@ docker/monitoring/
 │
 ├── prometheus/
 │   └── prometheus.yml
-│
-└── data/
-    ├── prometheus/
-    └── grafana/
 ```
 - prometheus/ contains the active Prometheus configuration
-- data/ stores persistent container data
+- Persistent data is stored in Docker-managed volumes
 - Grafana, node-exporter, and cAdvisor require no host-side configuration files
 
 ## Initial Setup (Docker Host)
@@ -56,8 +52,20 @@ mkdir monitoring
 cd monitoring
 
 mkdir prometheus
-mkdir -p data/prometheus data/grafana
 
 touch docker-compose.yml
 touch prometheus/prometheus.yml
+```
+
+```
+nano docker-compose.yml
+```
+
+Paste in the complete `docker-compose.yml`, then save and exit:
+
+- Ctrl + O → Enter
+- Ctrl + X
+
+```
+docker compose up -d
 ```

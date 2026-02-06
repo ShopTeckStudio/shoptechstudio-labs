@@ -66,6 +66,19 @@ Paste in the complete `docker-compose.yml`, then save and exit:
 - Ctrl + O → Enter
 - Ctrl + X
 
+## Prometheus Configuration File
+
+Prometheus requires a local configuration file to start.  
+This file is referenced directly by `docker-compose.yml` and **must exist on the Docker host**.
+
+Create the file inside the `prometheus/` directory:
+
+```
+nano prometheus/prometheus.yml
+```
+
+Paste in the complete `docker-compose.yml`, then save and exit:
+
 ```
 docker compose up -d
 ```

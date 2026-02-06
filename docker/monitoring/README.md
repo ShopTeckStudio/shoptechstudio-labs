@@ -79,6 +79,9 @@ nano prometheus/prometheus.yml
 
 Paste in the complete `docker-compose.yml`, then save and exit:
 
+- Ctrl + O → Enter
+- Ctrl + X
+
 ```
 docker compose up -d
 ```

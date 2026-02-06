@@ -89,10 +89,13 @@ docker compose up -d
 You will need to update <server-ip> with the ip of the computer you installed the container.
 
 Prometheus Open:
+```
 http://<server-ip>:9090
-
+```
 Grafana Open:
+```
 http://<server-ip>:3000
+```
 
 Login: admin / admin
 Change password when prompted

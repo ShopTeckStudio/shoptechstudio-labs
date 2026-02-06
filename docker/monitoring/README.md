@@ -85,3 +85,21 @@ Paste in the complete `docker-compose.yml`, then save and exit:
 ```
 docker compose up -d
 ```
+## ACCESSING YOUR CONTAINER
+You will need to update <server-ip> with the ip of the computer you installed the container.
+
+Prometheus Open:
+http://<server-ip>:9090
+
+Grafana Open:
+http://<server-ip>:3000
+
+Login: admin / admin
+Change password when prompted
+User name can be changed after loging in under profile
+
+add connection to grafana
+
+```
+http://prometheus:9090
+```

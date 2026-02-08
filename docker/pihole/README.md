@@ -1,4 +1,4 @@
-# Monitoring Stack
+# Pihole (Standalone)
 
 This folder contains a a standalone pihole container used to do DNS stuff.
 

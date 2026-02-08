@@ -81,7 +81,7 @@ You will need to update <server-ip> with the ip of the computer you installed th
 
 OPen Pihole:
 ```
-http://<server-ip>:9090
+http://<server-ip>:8080
 ```
 
 

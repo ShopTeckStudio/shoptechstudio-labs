@@ -84,6 +84,28 @@ docker exec -it pihole pihole setpassword
 ```
 Follow the prompts to set a new password.
 
+## Additions Information I Referenced in the Video
+
+Start pihole (must be in directory i.e. cd docker/pihole):
+```
+docker compose up -d
+```
+Stop for running: 
+```
+docker compose down
+```
+Logs:
+````
+docker compose logs -f
+```
+Update Pihole
+```
+docker compose pull && docker compose up -d
+```
+*** DOCKER-SETTINGS- RESOURCES -NETWORK- ENABLE HOSTING NETWORK must be off to run this one ***
+Update: 
+
+
 
 
 

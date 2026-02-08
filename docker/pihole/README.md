@@ -107,8 +107,3 @@ Update Pihole
 docker compose pull && docker compose up -d
 ```
 *** DOCKER-SETTINGS- RESOURCES -NETWORK- ENABLE HOSTING NETWORK must be off to run this one ***
-
-
-
-
-

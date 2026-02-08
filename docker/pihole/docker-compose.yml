@@ -12,7 +12,7 @@ services:
     environment:
       # Set your local timezone  
       TZ: America/Los_Angeles
-      WEBPASSWORD: 
+      WEBPASSWORD: Password1234 
       DNSMASQ_LISTENING: all
 
     volumes:

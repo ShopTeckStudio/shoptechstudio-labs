@@ -76,10 +76,13 @@ Open the Pi-hole web interface:
 http://<server-ip>:8080
 ```
 
+## Recommended: Change the Admin Password
 
-Loggin: admin / admin
-Change password when prompted
-User name can be changed after loging in under profile
+Run the following commands from your terminal:
+```
+docker exec -it pihole pihole setpassword
+```
+Follow the prompts to set a new password.
 
 
 

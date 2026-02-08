@@ -61,6 +61,8 @@ Paste in the complete `docker-compose.yml`, then save and exit:
 
 ```
 - Ctrl + O → Enter
+```
+```
 - Ctrl + X
 ```
 ```
@@ -90,20 +92,21 @@ Start pihole (must be in directory i.e. cd docker/pihole):
 ```
 docker compose up -d
 ```
-Stop for running: 
+Stop running: 
 ```
 docker compose down
 ```
 Logs:
-````
+```
 docker compose logs -f
+```
+Press Ctrl+C to exit log view (container will keep running).
 ```
 Update Pihole
 ```
 docker compose pull && docker compose up -d
 ```
 *** DOCKER-SETTINGS- RESOURCES -NETWORK- ENABLE HOSTING NETWORK must be off to run this one ***
-Update: 
 
 
 

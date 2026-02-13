@@ -141,5 +141,9 @@ Paste in the complete `docker-compose.yml`, then save and exit:
 ```
 docker compose up -d
 ```
+Add Dashboard 1860 to Grafana to view these mettric.
 
+Repeat these steps for any additional servise you want to use.
+
+-cAdvisor, use Grafana Dashboard 193 or 14282
 

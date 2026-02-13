@@ -106,3 +106,34 @@ add connection to grafana
 ```
 http://prometheus:9090
 ```
+## OPTIONAL SERVICES 
+To add node_exporter to the stack, first take the contain down
+
+```
+cd docker/monitoring
+docker compose down
+```
+```
+nano docker-compose.yml
+```
+
+Paste in or remove hashtags from node_exporter in `docker-compose.yml`, then save and exit:
+
+- Ctrl + O → Enter
+- Ctrl + X
+
+Next update the nano prometheus/prometheus.yml file so it will scrape the data for node_exporter
+```
+nano prometheus/prometheus.yml
+```
+
+Paste in the complete `docker-compose.yml`, then save and exit:
+
+- Ctrl + O → Enter
+- Ctrl + X
+
+```
+docker compose up -d
+```
+
+

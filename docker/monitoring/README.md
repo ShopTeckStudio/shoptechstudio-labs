@@ -120,6 +120,8 @@ docker compose down
 ```
 nano docker-compose.yml
 ```
+Use thit to completely delte all text in the `docker-compose.yml` if you are replacing every thing.
+- Ctrl + k
 
 Paste in or remove hashtags from node_exporter in `docker-compose.yml`, then save and exit:
 

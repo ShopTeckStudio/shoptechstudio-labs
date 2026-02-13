@@ -22,6 +22,15 @@ services:
       - grafana_data:/var/lib/grafana
     restart: unless-stopped
 
+# Node Exporter (Optional)
+# Uncomment when ready to collect host system metrics
+#  node_exporter:
+#    image: prom/node-exporter:latest
+#    container_name: node_exporter
+#    restart: unless-stopped
+#    ports:
+#      - "9100:9100"
+
 volumes:
   prometheus_data:
   grafana_data:

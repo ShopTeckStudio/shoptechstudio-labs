@@ -85,6 +85,10 @@ Paste in the complete `docker-compose.yml`, then save and exit:
 ```
 docker compose up -d
 ```
+Running this command will check your container status and up times.
+```
+docker compose ps
+```
 ## ACCESSING YOUR CONTAINER
 You will need to update <server-ip> with the ip of the computer you installed the container.
 

@@ -8,7 +8,8 @@ scrape_configs:
       - targets:
           - "localhost:9090"
           
-# Add additional scrape jobs below if needed          
+# Node Exporter (Optional)
+# Uncomment when ready to collect host system metrics    
 #   - job_name: "node"
 #     static_configs:
 #       - targets: ["node_exporter:9100"]          
@@ -27,7 +28,6 @@ scrape_configs:
 
   # Typical next jobs you’ll add (for context)
   # Later you’ll add jobs like:
-  # node-exporter
   # cadvisor
   # home-assistant
   # pihole

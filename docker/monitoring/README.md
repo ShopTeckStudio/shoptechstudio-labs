@@ -89,6 +89,8 @@ Running this command will check your container status and up times.
 ```
 docker compose ps
 ```
+Use Grafana Dashboard 3662 to view metrics.
+
 ## ACCESSING YOUR CONTAINER
 You will need to update <server-ip> with the ip of the computer you installed the container.
 

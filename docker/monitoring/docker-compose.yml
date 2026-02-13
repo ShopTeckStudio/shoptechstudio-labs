@@ -44,7 +44,6 @@ services:
 #      - /sys:/sys:ro
 #      - /var/lib/docker:/var/lib/docker:ro
 
-
 volumes:
   prometheus_data:
   grafana_data:

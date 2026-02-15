@@ -1,13 +1,13 @@
-The following will aid in getttnig cAdvisor to use a "slighly" more freindly nameing convention, be make sure you refreence the video to porper plavement of othe inforation provided bellow.
+The following will aid in getttnig cAdvisor to use a "slighly" more freindly nameing convention, be make sure you refreence the video to porper placement of othe inforation provided bellow.
 
-After installing dashbard 14282
+After installing dashbard 14282, navegate to 
 
-Navegate to Home-Dashboards-Cadvisor exporter-Settings-Variables
+# Home-Dashboards-Cadvisor exporter-Settings-Variables
 
 You should see 
 
- -Host 
- -Container
+ - Host 
+ - Container
  
 We will modify both
 

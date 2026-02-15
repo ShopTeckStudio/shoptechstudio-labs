@@ -16,6 +16,6 @@ Under Continer, change metic to
 ```
 container_memory_usage_bytes
 ```
-and Cange lable filters to instance and $host
+and Cange lable filters to instance and $host and lable to id
 
 <img width="500" height="172" alt="Screenshot 2026-02-15 at 2 03 39 PM" src="https://github.com/user-attachments/assets/c9f3a376-d59a-4aec-a618-b8a2633e5305" />

@@ -31,6 +31,15 @@ and Cange lable filters to instance and $host and lable to id
 ```
 sum(rate(container_cpu_usage_seconds_total{instance=~"$host",id=~"$container"}[5m])) by (container_short_id) *100
 ```
+or
+```
+sum(rate(container_cpu_usage_seconds_total{
+  instance=~"$host",
+  id=~"$container",
+  id!="/"
+}[1m]))
+by (container_short_id) * 100
+```
 ```
 Legend  {{container_short_id}}
 ```

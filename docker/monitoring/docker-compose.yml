@@ -2,6 +2,92 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
+    hostname: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+    networks:
+      - monitoring
+    restart: unless-stopped
+    
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    hostname: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+#      - GF_SECURITY_ADMIN_USER=admin
+#      - GF_SECURITY_ADMIN_PASSWORD=yourpassword
+      - GF_DATE_FORMATS_DEFAULT_TIMEZONE=browser
+    networks:
+      - monitoring
+    restart: unless-stopped 
+
+# Node_ecporter (Optional)    
+  node_exporter:   
+    image: prom/node-exporter:latest
+    container_name: node_exporter
+    hostname: node_exporter
+    restart: unless-stopped 
+    ports:
+      - "9100:9100" 
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+    networks:
+      - monitoring
+
+# cAdvisor (Optional)    
+  cadvisor:  
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    hostname: cadvisor
+    ports:
+      - "8081:8080"
+    volumes: 
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
+    networks:
+      - monitoring
+    restart: unless-stopped 
+    
+networks:
+  monitoring:
+    driver: bridge  
+      
+volumes:
+  prometheus-data:  
+  grafana-data:
+      
+
+
+
+
+
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
     volumes:
       # Change this only if you use a different local folder structure
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
@@ -23,27 +109,23 @@ services:
     restart: unless-stopped
 
 # Node Exporter (Optional)
-# Uncomment when ready to collect host system metrics
-#  node_exporter:
-#    image: prom/node-exporter:latest
-#    container_name: node_exporter
-#    restart: unless-stopped
-#    ports:
-#      - "9100:9100"
-#
-# cAdvisor (Optional)
-#  cadvisor:
-#    image: gcr.io/cadvisor/cadvisor:latest
-#    container_name: cadvisor
-#    restart: unless-stopped
-#    ports:
-#      - "8081:8080"
-#    volumes:
-#      - /:/rootfs:ro
-#      - /var/run:/var/run:ro
-#      - /sys:/sys:ro
-#      - /var/run/docker.sock:/var/run/docker.sock:ro
+  node_exporter:
+    image: prom/node-exporter:latest
+    container_name: node_exporter
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
 
-volumes:
-  prometheus_data:
-  grafana_data:
+ cAdvisor (Optional)
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+

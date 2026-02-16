@@ -29,54 +29,43 @@ and Cange lable filters to instance and $host and lable to id
 
 # CPU
 ```
-sum(rate(container_cpu_usage_seconds_total{instance=~"$host",id=~"$container"}[5m])) by (container_short_id) *100
-```
-
-or
-
-```
-sum(rate(container_cpu_usage_seconds_total{
-  instance=~"$host",
-  id=~"$container",
-  id!="/"
-}[1m]))
-by (container_short_id) * 100
+sum(rate(container_cpu_usage_seconds_total{instance=~"$host",id=~"$container"}[5m])) by (container_name) *100
 ```
 ```
-Legend  {{container_short_id}}
+Legend  {{container_name}}
 ```
 # Memory	usage
 ```
-sum(container_memory_rss{instance=~"$host",id=~"$container"}) by (container_short_id)
+sum(container_memory_rss{instance=~"$host",id=~"$container"}) by (container_name)
 ```
 ```
-Legend  {{container_short_id}}
+Legend  {{container_name}}
 ```
 # Memory cached
 ```
-sum(container_memory_cache{instance=~"$host",id=~"$container"}) by (container_short_id)
+sum(container_memory_cache{instance=~"$host",id=~"$container"}) by (container_name)
 ```
 ```
-Legend  {{container_short_id}}
+Legend  {{container_name}}
 ```
 # Received Network traffic
 ```
-sum(rate(container_network_receive_bytes_total{instance=~"$host",id=~"$container"}[5m])) by (container_short_id)
+sum(rate(container_network_receive_bytes_total{instance=~"$host",id=~"$container"}[5m])) by (container_name)
 ```
 ```
-Legend  {{container_short_id}}
+Legend  {{container_name}}
 ```
 # Edit Sent Network Traffic:
 ```
-sum(rate(container_network_transmit_bytes_total{instance=~"$host",id=~"$container"}[5m])) by (container_short_id)
+sum(rate(container_network_transmit_bytes_total{instance=~"$host",id=~"$container"}[5m])) by (container_name)
 ````
 ```
-Legend  {{container_short_id}}
+Legend  {{container_name}}
 ```
 # Container info
 ```
 (time() - container_start_time_seconds{instance=~"$host",id=~"$container"})/86400
 ```
 ```
-{{container_short_id}}
+{{container_name}}
 ```

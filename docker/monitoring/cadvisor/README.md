@@ -69,3 +69,9 @@ Legend  {{container_name}}
 ```
 {{container_name}}
 ```
+
+And in the organize/rename transformation, rename:
+
+id → Container
+Value → Running (days)
+instance → Instance

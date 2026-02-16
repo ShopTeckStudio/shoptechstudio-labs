@@ -77,3 +77,7 @@ id → Container
 Value → Running (days)
 instance → Instance
 ```
+Run this in terminal to see freindly names.
+```
+docker ps --format "table {{.ID}}\t{{.Names}}"
+```

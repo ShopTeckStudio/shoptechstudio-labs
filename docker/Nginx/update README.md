@@ -94,7 +94,7 @@ Paste in the complete `nginx.conf`, then save and exit:
 
 ## 📄 Test Page
 
-Edit html/index file:
+Edit the HTML file:
 
 ```
 nano html/index.html

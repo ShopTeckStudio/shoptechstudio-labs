@@ -201,10 +201,9 @@ Quick copy and paste to bring stack up
 ```
 cd docker/nginx
 docker compose up -d
-
+```
 
 Use this to completely delte all text in the `docker-compose.yml` if you are replacing every thing.
 ```
 - Ctrl + k
 ```
-

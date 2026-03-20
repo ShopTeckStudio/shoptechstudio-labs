@@ -168,7 +168,7 @@ nginx/logs/
 - Clear file structure
 - Persistent data handling
 - Easy to expand into a full reverse proxy system
-  
+
 ---
 
 ## 🧰 Part of Homelab Stack

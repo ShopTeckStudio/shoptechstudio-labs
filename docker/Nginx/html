@@ -1,1 +1,9 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NGINX</title>
+</head>
+<body>
+    <h1>NGINX is running</h1>
+</body>
+</html>

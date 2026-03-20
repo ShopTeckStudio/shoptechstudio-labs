@@ -95,7 +95,7 @@ Edit:
 nano config/default.conf
 ```
 
-Paste in the complete `config/default.conf`, then save and exit:
+Paste in the complete `default.conf`, then save and exit:
 
 ---
 
@@ -107,7 +107,7 @@ Edit:
 nano html/index.html
 ```
 
-Paste in the complete `html/index.html`, then save and exit:
+Paste in the complete `index.html`, then save and exit:
 
 ---
 
@@ -129,9 +129,12 @@ docker compose ps
 
 Open in browser:
 
+
 ```
 http://<server-ip>
 ```
+
+You will need to update <server-ip> with the ip of the computer you installed the container.
 
 ---
 
@@ -186,70 +189,22 @@ This stack integrates with:
 ---
 
 
-nano docker-compose.yml
-```
-
-Paste in the complete `docker-compose.yml`, then save and exit:
-
-- Ctrl + O → Enter
-- Ctrl + X
-
-## Prometheus Configuration File
-
-Prometheus requires a local configuration file to start.  
-This file is referenced directly by `docker-compose.yml` and **must exist on the Docker host**.
-
-Create the file inside the `prometheus/` directory:
-
-```
-nano prometheus/prometheus.yml
-```
-
-Paste in the complete `docker-compose.yml`, then save and exit:
-
-- Ctrl + O → Enter
-- Ctrl + X
-
-```
-docker compose up -d
-```
-Running this command will check your container status and up times.
-```
-docker compose ps
-```
-Use Grafana Dashboard 3662 to view metrics.
-
-## ACCESSING YOUR CONTAINER
-You will need to update <server-ip> with the ip of the computer you installed the container.
-
-Prometheus Open:
-```
-http://<server-ip>:9090
-```
-Grafana Open:
-```
-http://<server-ip>:3000
-```
-
-Login: admin / admin
-Change password when prompted
-User name can be changed after loging in under profile
-
-add connection to grafana
-
-```
-http://prometheus:9090
-```
 ## OPTIONAL SERVICES/INFO 
 
-
+Quick copy and paste to take stack down
 ```
 cd docker/nginx
 docker compose down
 ```
 
+Quick copy and paste to bring stack up
 ```
+cd docker/nginx
+docker compose up -d
+
+
 Use this to completely delte all text in the `docker-compose.yml` if you are replacing every thing.
+```
 - Ctrl + k
 ```
 

@@ -78,31 +78,8 @@ Edit the compose file:
 nano docker-compose.yml
 ```
 
-Paste:
-
 ```
-
-services:
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    restart: unless-stopped
-
-    ports:
-      - "80:80"
-      - "443:443"
-
-    volumes:
-      - ./config:/etc/nginx/conf.d
-      - ./html:/usr/share/nginx/html
-      - ./logs:/var/log/nginx
-
-    networks:
-      - nginx_net
-
-networks:
-  nginx_net:
-    driver: bridge
+Paste in the complete `docker-compose.yml`, then save and exit:
 ```
 
 Save and exit:

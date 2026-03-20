@@ -89,7 +89,7 @@ Save and exit:
 
 ## ⚙️ NGINX Configuration
 
-Edit:
+Edit config/default file:
 
 ```
 nano config/default.conf
@@ -101,7 +101,7 @@ Paste in the complete `default.conf`, then save and exit:
 
 ## 📄 Test Page
 
-Edit:
+Edit html/index file:
 
 ```
 nano html/index.html

@@ -32,7 +32,7 @@ docker/
 ├── pihole/
 ```
 
-This repository structure is for documentation and organization.
+This repository structure is for documentation and organization.  
 Your Docker host should only contain files referenced by `docker-compose.yml`.
 
 - `config/nginx.conf` contains the main NGINX configuration
@@ -60,7 +60,6 @@ touch html/index.html
 ```
 
 ---
-
 
 ## ⚙️ Docker Compose Configuration
 
@@ -169,6 +168,7 @@ nginx/logs/
 - Clear file structure
 - Persistent data handling
 - Easy to expand into a full reverse proxy system
+  
 ---
 
 ## 🧰 Part of Homelab Stack

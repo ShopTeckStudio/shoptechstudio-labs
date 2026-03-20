@@ -24,6 +24,9 @@ docker/
 ├── nginx/
 │   ├── docker-compose.yml
 │   ├── config/
+│   │   ├── nginx.conf
+│   │   ├── conf.d/
+│   │   └── certs/
 │   ├── html/
 │   └── logs/
 ├── pihole/
@@ -55,6 +58,9 @@ docker/
 ├── nginx/
 │   ├── docker-compose.yml
 │   ├── config/
+│   │   ├── nginx.conf
+│   │   ├── conf.d/
+│   │   └── certs/
 │   ├── html/
 │   └── logs/
 ├── pihole/
@@ -71,13 +77,16 @@ Your Docker host should only contain files referenced by `docker-compose.yml`.
 docker/nginx/
 ├── docker-compose.yml
 ├── config/
-│   └── default.conf
+│   ├── nginx.conf
+│   ├── conf.d/
+│   └── certs/
 ├── html/
-│   └── index.html
 └── logs/
 ```
 
-- `config/` contains NGINX configuration files
+- `config/nginx.conf` contains the main NGINX configuration
+- `config/conf.d/` contains site-specific configuration files
+- `config/certs/` stores SSL certificates
 - `html/` contains static web files
 - `logs/` stores persistent access and error logs
 
@@ -92,10 +101,10 @@ cd docker
 mkdir nginx
 cd nginx
 
-mkdir config html logs
+mkdir -p config/conf.d config/certs html logs
 
 touch docker-compose.yml
-touch config/default.conf
+touch config/nginx.conf
 touch html/index.html
 ```
 

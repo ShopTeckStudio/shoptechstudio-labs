@@ -78,9 +78,7 @@ Edit the compose file:
 nano docker-compose.yml
 ```
 
-```
 Paste in the complete `docker-compose.yml`, then save and exit:
-```
 
 Save and exit:
 
@@ -97,19 +95,7 @@ Edit:
 nano config/default.conf
 ```
 
-Paste:
-
-```
-server {
-    listen 80;
-    server_name localhost;
-
-    location / {
-        root /usr/share/nginx/html;
-        index index.html;
-    }
-}
-```
+Paste in the complete `config/default.conf`, then save and exit:
 
 ---
 
@@ -121,19 +107,7 @@ Edit:
 nano html/index.html
 ```
 
-Paste:
-
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <title>NGINX</title>
-</head>
-<body>
-    <h1>NGINX is running</h1>
-</body>
-</html>
-```
+Paste in the complete `html/index.html`, then save and exit:
 
 ---
 

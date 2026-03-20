@@ -26,10 +26,12 @@ docker/
 │   ├── config/
 │   │   ├── nginx.conf
 │   │   ├── conf.d/
+│   │   │   └── default.conf
 │   │   └── certs/
 │   ├── html/
+│   │   └── index.html
 │   └── logs/
-├── pihole/
+└── pihole/
 ```
 
 This repository structure is for documentation and organization.  

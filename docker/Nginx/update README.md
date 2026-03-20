@@ -32,40 +32,6 @@ docker/
 ├── pihole/
 ```
 
-# 🌐 NGINX Stack
-
-This folder contains a Docker-based NGINX stack used as a reverse proxy and static file server within a homelab environment.
-
-The stack is designed to be modular, lightweight, and easy to rebuild, while providing a clean foundation for routing traffic to internal services.
-
----
-
-## 🔍 What This Stack Does
-
-- Reverse proxy for internal services
-- Static file hosting (HTML and assets)
-- Central entry point for homelab applications
-- Persistent logging for debugging and monitoring
-- Scalable foundation for SSL and multi-service routing
-
----
-
-## 📁 Repository Structure
-
-```
-docker/
-├── monitoring/
-├── nginx/
-│   ├── docker-compose.yml
-│   ├── config/
-│   │   ├── nginx.conf
-│   │   ├── conf.d/
-│   │   └── certs/
-│   ├── html/
-│   └── logs/
-├── pihole/
-```
-
 This repository structure is for documentation and organization.
 Your Docker host should only contain files referenced by `docker-compose.yml`.
 

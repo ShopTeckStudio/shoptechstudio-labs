@@ -38,10 +38,10 @@ This repository structure is for documentation and organization.
 Your Docker host should only contain files referenced by `docker-compose.yml`.
 
 - `config/nginx.conf` contains the main NGINX configuration
-- `config/conf.d/` contains site-specific configuration files
+- `config/conf.d/default.conf` site-specific configuration (reverse proxy + static site rules)
 - `config/certs/` stores SSL certificates
-- `html/` contains static web files
-- `logs/` stores persistent access and error logs
+- `html/index.html` contains static web files
+- `logs/` stores persistent access and error logs, populated automatically by Nginx on first run
 
 ---
 
@@ -58,6 +58,7 @@ mkdir -p config/conf.d config/certs html logs
 
 touch docker-compose.yml
 touch config/nginx.conf
+touch config/conf.d/default.conf
 touch html/index.html
 ```
 

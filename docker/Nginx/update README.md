@@ -107,20 +107,32 @@ Two things must be updated before running:
 This is basically your reverse proxy address book, it will look something like this as you add more services to reverse proxy.
 
 ```
-location /homeassistant/ {
-    proxy_pass http://homeassistant:8123;
+location /pihole/ {
+    proxy_pass http://pihole:8082;
 }
 
 location /grafana/ {
     proxy_pass http://grafana:3000;
 }
 
+location /prometheus/ {
+    proxy_pass http://prometheus:9090;
+}
+
 location /nextcloud/ {
     proxy_pass http://nextcloud:80;
 }
 
-location /pihole/ {
-    proxy_pass http://pihole:80;
+location /jellyfin/ {
+    proxy_pass http://jellyfin:8096;
+}
+
+location /portainer/ {
+    proxy_pass http://portainer:9443;
+}
+
+location /uptime-kuma/ {
+    proxy_pass http://uptime-kuma:3001;
 }
 ```
 

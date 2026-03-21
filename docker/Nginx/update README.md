@@ -106,6 +106,7 @@ Two things must be updated before running:
 
 This is basiclly your reverse proxy address book, it will look somethings like this as you add more services to reverse proxy
 
+```
 location /homeassistant/ {
     proxy_pass http://homeassistant:8123;
 }
@@ -121,6 +122,7 @@ location /nextcloud/ {
 location /pihole/ {
     proxy_pass http://pihole:80;
 }
+```
 
 ```
 nano config/conf.d/default.conf

@@ -98,6 +98,11 @@ Paste in the complete `nginx.conf`, then save and exit:
 
 Edit the site config file:
 
+Two things must be updated before running:
+
+`server_name` — replace IP with your actual local IP, i.g. 192.168.1.199
+`proxy_pass` — replace http://app:3000 with your upstream container name and port when you're ready to proxy something, i.g. http://myappname:3001  or   http://nextcloud:80
+
 ```
 nano config/conf.d/default.conf
 ```

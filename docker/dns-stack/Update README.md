@@ -1,1 +1,1 @@
-This is a personal build documention archive, feel free to use any of my others, this works for my setup but and you are free to try it out, but you will need to know what you are doing, or reference the other projects and adapt it to this one. 
+"This is a personal build documentation archive. You're welcome to use any of my other projects as a reference — this configuration works for my specific setup, so if you'd like to adapt it, you'll need some familiarity with Docker and Nginx or be prepared to cross-reference the other projects in this repo."

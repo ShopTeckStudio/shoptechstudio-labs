@@ -1,0 +1,1 @@
+This is a personal build documention archive, feel free to use any of my others, this works for my setup but and you are free to try it out, but you will need to know what you are doing, or reference the other projects and adapt it to this one. 

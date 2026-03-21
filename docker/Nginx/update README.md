@@ -253,6 +253,11 @@ cd docker/nginx
 docker compose up -d
 ```
 
+### Restart the stack
+```
+docker compose down && docker compose up -d
+```
+
 Use this repeatedly to clear the file line by line before pasting new content. A serious time saver if you need to make a lot of change, paste an entire new file in, need to replace an entire line!
 ```
 CTRL + K

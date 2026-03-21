@@ -94,6 +94,21 @@ Paste in the complete `nginx.conf`, then save and exit:
 
 ---
 
+## ⚙️ Site Configuration
+
+Edit the site config file:
+
+```
+nano config/conf.d/default.conf
+```
+
+Paste in the complete `default.conf`, then save and exit:
+- CTRL + O → Enter
+- CTRL + X
+
+
+---
+
 ## 📄 Test Page
 
 Edit the HTML file:
@@ -150,7 +165,7 @@ docker compose restart nginx
 Logs are stored locally:
 
 ```
-nginx/logs/
+docker/nginx/logs/
 ```
 
 ---
@@ -186,7 +201,7 @@ This stack integrates with:
 ---
 
 
-## ⚙️ Optional Commands (Quick Reference)
+## 📝 Optional Commands (Quick Reference)
 
 ### Stop the stack
 ```
@@ -200,7 +215,7 @@ cd docker/nginx
 docker compose up -d
 ```
 
-Use this to completely delete all text in the `docker-compose.yml` if you are replacing everything.
+Use this repeatedly to clear the file line by line before pasting new content. A serious time saver if you need to make a lot of change, paste an entire new file in, need to replace an entire line!
 ```
 CTRL + K
 ```

@@ -100,11 +100,11 @@ Edit the site config file:
 
 Two things must be updated before running:
 
-`server_name` — replace IP with your actual local IP, i.g. 192.168.1.199
+`server_name` — replace IP with your actual local IP, e.g. 192.168.1.199
 
-`proxy_pass` — replace http://app:3000 with your upstream container name and port when you're ready to proxy something, i.g. http://myappname:3001  or   http://nextcloud:80
+`proxy_pass` — replace http://app:3000 with your upstream container name and port when you're ready to proxy something, e.g. http://myappname:3001  or   http://nextcloud:80
 
-This is basiclly your reverse proxy address book, it will look somethings like this as you add more services to reverse proxy
+This is basically your reverse proxy address book, it will look something like this as you add more services to reverse proxy.
 
 ```
 location /homeassistant/ {

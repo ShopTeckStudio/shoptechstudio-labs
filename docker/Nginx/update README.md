@@ -169,7 +169,7 @@ docker compose ps
 Open in your browser:
 
 ```
-http://<server-ip>
+http://<server-ip>;8080    or the appropriate port you mapped.
 ```
 
 Replace `<server-ip>` with the IP address of the machine running the container.

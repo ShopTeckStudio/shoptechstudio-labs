@@ -104,6 +104,24 @@ Two things must be updated before running:
 
 `proxy_pass` — replace http://app:3000 with your upstream container name and port when you're ready to proxy something, i.g. http://myappname:3001  or   http://nextcloud:80
 
+This is basiclly your reverse proxy address book, it will look somethings like this as you add more services to reverse proxy
+
+location /homeassistant/ {
+    proxy_pass http://homeassistant:8123;
+}
+
+location /grafana/ {
+    proxy_pass http://grafana:3000;
+}
+
+location /nextcloud/ {
+    proxy_pass http://nextcloud:80;
+}
+
+location /pihole/ {
+    proxy_pass http://pihole:80;
+}
+
 ```
 nano config/conf.d/default.conf
 ```

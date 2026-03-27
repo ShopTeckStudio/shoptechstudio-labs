@@ -1,9 +1,25 @@
-# Home Assistant Leak Detection (Third Reality)
+# ShopTech Studio Labs
 
-This repository contains the YAML and helper setup used in my YouTube video:
-"Third Reality Leak Detectors with Home Assistant"
+A collection of real-world systems, configurations, and experiments built around Home Assistant, Docker, and practical automation.
 
-## Contents
-- Leak alert latch automation
-- Reminder notifications
-- Template sensor for active leaks
+This repository reflects working setups used in actual environments — focused on reliability, usability, and real-world conditions.
+
+---
+
+## 📺 Related Content
+
+- YouTube: https://youtube.com/@shoptechstudio
+
+---
+
+## 📁 Repository Structure
+
+### home-assistant/
+Automations, templates, and configurations for Home Assistant.
+
+- Leak detection systems  
+- Notification workflows  
+- Sensor logic and helpers  
+
+### docker/
+Container setups and supporting services.

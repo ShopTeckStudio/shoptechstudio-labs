@@ -1,4 +1,4 @@
-# ShopTech Studio Labs
+# ShopTech Studio
 
 A collection of real-world systems, configurations, and experiments built around Home Assistant, Docker, and practical automation.
 

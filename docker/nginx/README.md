@@ -1,3 +1,7 @@
+# ⚠️[!WARNING]
+This project has been abandoned in favour of Nginx Proxy Manager.
+This is the basic version of NGINX — it works, but requires manual config file editing with no web UI. That's exactly why I moved on. I'm keeping this repo up for reference and in case I ever come back to it, but if you're starting fresh I'd strongly recommend heading over to the Nginx Proxy Manager repo instead. Feel free to use this as a starting point, just know what you're getting into.
+
 # 🌐 NGINX Stack
 
 This folder contains a Docker-based NGINX stack used as a reverse proxy and static file server within a homelab environment.

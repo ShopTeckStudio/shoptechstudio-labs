@@ -32,7 +32,7 @@ This repository structure is for documentation and organization.
 Your Docker host should only contain files referenced by `docker-compose.yml`.
 
 - `data` stores NPM's database, config, and proxy host definitions — populated automatically on first run
-- `letsencrypt' stores SSL certificates — populated automatically when you create a proxy host with SSL
+- `letsencrypt` stores SSL certificates — populated automatically when you create a proxy host with SSL
 
 ---
 
@@ -86,7 +86,7 @@ docker compose ps
 Open in your browser:
 
 ```
-http://<server-ip>;81    or the appropriate port you mapped.
+http://<server-ip>:81    or the appropriate port you mapped.
 ```
 
 Replace `<server-ip>` with the IP address of the machine running the container.
@@ -101,20 +101,9 @@ You will be prompted to change both on first login.
 ## ➕ Adding Proxy Hosts
 All proxy configuration is done through the web UI — no config files needed. For each service, you'll enter:
 
-- Domain name — e.g. homeassistant.local or nextcloud.yourdomain.com
-- Forward hostname/IP — the container name or local IP of the service
-- Forward port — the service's port
-
-Common examples:
-
-## Service           Forward Host        Port    
-Home Assistant    homeassistant       8123  
-Nextcloud         nextcloud           80
-Grafana           grafana             3000
-Prometheus        prometheus          9090
-Pi-hole           pihole              8082
-Portainer         portainer           9443
-Uptime Kuma       uptime-kuma         3001
+- Domain name — e.g. homeassistant.local or nextcloud.yourdomain.com e.g. Pi-hole
+- Forward hostname/IP — the container name or local IP of the service e.g. pihole
+- Forward port — the service's port e.g. 8082
 
 ---
 
@@ -133,7 +122,7 @@ docker compose restart nginx-proxy-manager
 Logs are stored locally:
 
 ```
-docker/nginx/logs/
+ docker/nginx-proxy-manager/data/logs/
 ```
 
 ---
@@ -155,7 +144,7 @@ This stack integrates with:
 - DNS (Pi-hole)
 - Smart Home (Home Assistant)
 - Cloud (Nextcloud)
-Remote access (Tailscale + Cloudflare Tunnel)
+- Remote access (Tailscale + Cloudflare Tunnel)
 
 ---
 
@@ -164,13 +153,13 @@ Remote access (Tailscale + Cloudflare Tunnel)
 
 ### Stop the stack
 ```
-cd docker/nginx
+cd docker/nginx-proxy-manager
 docker compose down
 ```
 
 ### Start the stack
 ```
-cd docker/nginx
+cd docker/nginx-proxy-manager
 docker compose up -d
 ```
 

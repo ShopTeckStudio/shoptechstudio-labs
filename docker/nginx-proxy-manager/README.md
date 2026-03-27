@@ -91,7 +91,7 @@ http://<server-ip>:81    or the appropriate port you mapped.
 
 Replace `<server-ip>` with the IP address of the machine running the container.
 
-## Default login credentials:
+## 🔑 Default login credentials:
 
 - Email: admin@example.com
 - Password: changeme

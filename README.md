@@ -8,7 +8,7 @@ This repository reflects working setups used in actual environments — focused 
 
 ## 📺 Related Content
 
-- YouTube: https://youtube.com/@shoptechstudio
+- YouTube: [https://youtube.com/@shoptechstudio](https://www.youtube.com/@ShopTeckStudio)
 
 ---
 

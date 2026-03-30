@@ -173,3 +173,8 @@ Use this repeatedly to clear the file line by line before pasting new content. A
 CTRL + K
 ```
 
+To clear your dns if you are haveing troubles getting into one. 
+```
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+

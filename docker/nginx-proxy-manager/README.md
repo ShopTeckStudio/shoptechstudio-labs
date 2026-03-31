@@ -234,18 +234,19 @@ Run these commands after setting up the proxy host:
 docker exec nextcloud php occ config:system:set trusted_domains 2 --value=nextcloud.yourdomain.com
 docker exec nextcloud php occ config:system:set overwritehost --value=nextcloud.yourdomain.com
 docker exec nextcloud php occ config:system:set overwriteprotocol --value=https
-docker exec nextcloud php occ config:system:set trusted_proxies 0 --value=<npm-docker-ip>    ## UPDATE
-docker exec nextcloud php occ config:system:set trusted_proxies 1 --value=<npm-docker-ip>    ## UPDATE
+docker exec nextcloud php occ config:system:set trusted_proxies 0 --value=<server-host-ip>
+docker exec nextcloud php occ config:system:set trusted_proxies 1 --value=<npm-docker-ip>
 docker restart nextcloud
 ```
 
-Get the NPM Docker IP with:
+- <server-host-ip> — your Mac mini's local IP e.g. 192.168.x.x
+- <npm-docker-ip> — get this with
 
 ```
 docker inspect nginx-proxy-manager | grep IPAddress
 ```
 
-> ⚠️ Also make sure Nextcloud is connected to the proxy network — a 502 error from NPM usually means the containers can't reach each other.
+⚠️ Also make sure Nextcloud is connected to the proxy network — a 502 error from NPM usually means the containers can't reach each other.
 
 ## 📝 Optional Commands (Quick Reference)
 

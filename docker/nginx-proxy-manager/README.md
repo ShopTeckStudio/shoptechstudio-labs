@@ -135,7 +135,7 @@ Once issued, assign the cert to each proxy host under the SSL tab and enable For
 ## 🔀 Docker Network — Proxy Connectivity
 NPM can only route traffic to services it can reach on the Docker network. If a service is on an isolated network (its own compose stack), NPM won't be able to reach it until it's connected.
 
-# Option 1 — Quick Fix (Live Only)
+### Option 1 — Quick Fix (Live Only)
 
 Connect NPM to a service's network manually:
 
@@ -145,7 +145,7 @@ docker network connect <network_name> nginx-proxy-manager
 
 ⚠️ This does not persist across container restarts. Use Option 2 to make it permanent.
 
-# Option 2 — Shared Proxy Network (Recommended)
+### Option 2 — Shared Proxy Network (Recommended)
 
 Create a shared external network that all services and NPM join: 
 - Only required one time ever.
@@ -154,7 +154,7 @@ Create a shared external network that all services and NPM join:
 docker network create proxy
 ```
 
-# Add the following to each service's docker-compose.yml:
+### Add the following to each service's docker-compose.yml:
 
 - Must be done for each container you add.
 

@@ -105,6 +105,11 @@ All proxy configuration is done through the web UI — no config files needed. F
 - Forward hostname/IP — the container name or local IP of the service e.g. pihole
 - Forward port — the service's port e.g. 8082
 
+### Websockets Support
+Some services require Websockets enabled in the NPM proxy host Details tab:
+
+- If the service has real-time updates or a live dashboard — websockets on. 
+- If it's just a static web UI you click around in — websockets off.
 ---
 
 ## 🔒 SSL Certificates
@@ -115,14 +120,15 @@ NPM handles SSL automatically via Let's Encrypt. For a homelab setup using a cus
 - Select Cloudflare as the DNS provider
 - Paste your Cloudflare API token in the credentials field in this format:
 
-# Cloudflare API token
+⚠️Email on your NPM account must be a real email — not the default admin@example.com — or Let's Encrypt cert requests will fail
+
+Cloudflare API token
 dns_cloudflare_api_token=yourTokenHere
 
 -Hit Save — NPM will issue the wildcard cert automatically
 
 Once issued, assign the cert to each proxy host under the SSL tab and enable Force SSL.
-
-ℹ️ A wildcard cert (*.yourdomain.com) covers all subdomains — you only need to issue it once.
+- ℹ️ A wildcard cert (*.yourdomain.com) covers all subdomains — you only need to issue it once.
 
 ---
 
@@ -141,12 +147,16 @@ docker network connect <network_name> nginx-proxy-manager
 
 # Option 2 — Shared Proxy Network (Recommended)
 
-Create a shared external network that all services and NPM join:
+Create a shared external network that all services and NPM join: 
+- Only required one time ever.
 
 ```
 docker network create proxy
 ```
+
 # Add the following to each service's docker-compose.yml:
+
+- Must be done for each container you add.
 
 ```
 networks:
@@ -157,16 +167,16 @@ networks:
     external: true
 ```
 
+# Add the each service to the proxy network: 
 
+Only one time ever for each container, not required if you ever restart the container as long as you updated the compose file and added it to the proxy network.
 
+```
+docker network connect proxy nginx-proxy-manager
+docker network connect proxy <service-container-name>
+```
 
-
-
-
-
-
-
-
+---
 
 ## 🔁 Updating Configuration
 
@@ -209,6 +219,33 @@ This stack integrates with:
 
 ---
 
+## Troubleshooting
+
+To clear your dns if you are haveing troubles getting into one (macOS only).
+
+```
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+### Nextcloud
+Nextcloud requires additional configuration to work behind a reverse proxy, or it will redirect back to the raw IP address.
+
+Run these commands after setting up the proxy host:
+```bash
+docker exec nextcloud php occ config:system:set trusted_domains 2 --value=nextcloud.yourdomain.com
+docker exec nextcloud php occ config:system:set overwritehost --value=nextcloud.yourdomain.com
+docker exec nextcloud php occ config:system:set overwriteprotocol --value=https
+docker exec nextcloud php occ config:system:set trusted_proxies 0 --value=<npm-docker-ip>    ## UPDATE
+docker exec nextcloud php occ config:system:set trusted_proxies 1 --value=<npm-docker-ip>    ## UPDATE
+docker restart nextcloud
+```
+
+Get the NPM Docker IP with:
+
+```
+docker inspect nginx-proxy-manager | grep IPAddress
+```
+
+> ⚠️ Also make sure Nextcloud is connected to the proxy network — a 502 error from NPM usually means the containers can't reach each other.
 
 ## 📝 Optional Commands (Quick Reference)
 
@@ -233,9 +270,3 @@ Use this repeatedly to clear the file line by line before pasting new content. A
 ```
 CTRL + K
 ```
-
-To clear your dns if you are haveing troubles getting into one. 
-```
-sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
-```
-

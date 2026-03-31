@@ -107,6 +107,67 @@ All proxy configuration is done through the web UI — no config files needed. F
 
 ---
 
+## 🔒 SSL Certificates
+NPM handles SSL automatically via Let's Encrypt. For a homelab setup using a custom domain, use the DNS Challenge method with Cloudflare:
+
+- Go to Certificates → Add SSL Certificate → Let's Encrypt via DNS
+- Enter *.yourdomain.com and yourdomain.com as domain names
+- Select Cloudflare as the DNS provider
+- Paste your Cloudflare API token in the credentials field in this format:
+
+# Cloudflare API token
+dns_cloudflare_api_token=yourTokenHere
+
+-Hit Save — NPM will issue the wildcard cert automatically
+
+Once issued, assign the cert to each proxy host under the SSL tab and enable Force SSL.
+
+ℹ️ A wildcard cert (*.yourdomain.com) covers all subdomains — you only need to issue it once.
+
+---
+
+## 🔀 Docker Network — Proxy Connectivity
+NPM can only route traffic to services it can reach on the Docker network. If a service is on an isolated network (its own compose stack), NPM won't be able to reach it until it's connected.
+
+# Option 1 — Quick Fix (Live Only)
+
+Connect NPM to a service's network manually:
+
+```
+docker network connect <network_name> nginx-proxy-manager
+```
+
+⚠️ This does not persist across container restarts. Use Option 2 to make it permanent.
+
+# Option 2 — Shared Proxy Network (Recommended)
+
+Create a shared external network that all services and NPM join:
+
+```
+docker network create proxy
+```
+# Add the following to each service's docker-compose.yml:
+
+```
+networks:
+  - proxy
+
+networks:
+  proxy:
+    external: true
+```
+
+
+
+
+
+
+
+
+
+
+
+
 ## 🔁 Updating Configuration
 
 Changes are made live through the UI. To restart the stack if needed:

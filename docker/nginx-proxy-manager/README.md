@@ -230,23 +230,26 @@ sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 Nextcloud requires additional configuration to work behind a reverse proxy, or it will redirect back to the raw IP address.
 
 Run these commands after setting up the proxy host:
-```bash
+```
 docker exec nextcloud php occ config:system:set trusted_domains 2 --value=nextcloud.yourdomain.com
-docker exec nextcloud php occ config:system:set overwritehost --value=nextcloud.yourdomain.com
 docker exec nextcloud php occ config:system:set overwriteprotocol --value=https
 docker exec nextcloud php occ config:system:set trusted_proxies 0 --value=<server-host-ip>
 docker exec nextcloud php occ config:system:set trusted_proxies 1 --value=<npm-docker-ip>
+docker exec nextcloud sed -i "s/'overwritehost' => '.*'/'overwritehost' => 'nextcloud.yourdomain.com'/" /var/www/html/config/config.php
+docker exec nextcloud sed -i "s/'overwriteprotocol' => 'http'/'overwriteprotocol' => 'https'/" /var/www/html/config/config.php
 docker restart nextcloud
 ```
 
-- <server-host-ip> — your Mac mini's local IP e.g. 192.168.x.x
-- <npm-docker-ip> — get this with
-
+- `nextcloud.yourdomain.com` — replace with your actual Nextcloud subdomain
+- `<server-host-ip>` — your server's local IP e.g. `192.168.x.x`
+- `<npm-docker-ip>` — get this with:
+  
 ```
 docker inspect nginx-proxy-manager | grep IPAddress
 ```
+Use the IP on the proxy network, not the default bridge.
 
-⚠️ Also make sure Nextcloud is connected to the proxy network — a 502 error from NPM usually means the containers can't reach each other.
+> ⚠️ Also make sure Nextcloud is connected to the proxy network — a 502 error from NPM usually means the containers can't reach each other.
 
 ## 📝 Optional Commands (Quick Reference)
 

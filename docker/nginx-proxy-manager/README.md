@@ -229,24 +229,22 @@ sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 ### Nextcloud
 Nextcloud requires additional configuration to work behind a reverse proxy, or it will redirect back to the raw IP address.
 
-Run these commands after setting up the proxy host:
+Add these lines in your configuation.yml
 ```
-docker exec nextcloud php occ config:system:set trusted_domains 2 --value=nextcloud.yourdomain.com
-docker exec nextcloud php occ config:system:set overwriteprotocol --value=https
-docker exec nextcloud php occ config:system:set trusted_proxies 0 --value=<server-host-ip>
-docker exec nextcloud php occ config:system:set trusted_proxies 1 --value=<npm-docker-ip>
-docker exec nextcloud sed -i "s/'overwritehost' => '.*'/'overwritehost' => 'nextcloud.yourdomain.com'/" /var/www/html/config/config.php
-docker exec nextcloud sed -i "s/'overwriteprotocol' => 'http'/'overwriteprotocol' => 'https'/" /var/www/html/config/config.php
-docker restart nextcloud
+OVERWRITEHOST: nextcloud.yourdomain.com
+OVERWRITEPROTOCOL: https
+NEXTCLOUD_OVERWRITECLIURL: https://nextcloud.yourdomain.com
+
+NEXTCLOUD_TRUSTED_DOMAINS_0: nextcloud.yourdomain.com
+NEXTCLOUD_TRUSTED_DOMAINS_1: yourIPaddress
+NEXTCLOUD_TRUSTED_DOMAINS_2: localhost
 ```
 
-- `nextcloud.yourdomain.com` — replace with your actual Nextcloud subdomain
-- `<server-host-ip>` — your server's local IP e.g. `192.168.x.x`
-- `<npm-docker-ip>` — get this with:
-  
+Use the IP on the proxy network, not the default bridge.  
 ```
 docker inspect nginx-proxy-manager | grep IPAddress
 ```
+
 Use the IP on the proxy network, not the default bridge.
 
 > ⚠️ Also make sure Nextcloud is connected to the proxy network — a 502 error from NPM usually means the containers can't reach each other.

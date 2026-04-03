@@ -1,56 +1,72 @@
-# cloudflared
+# 🌐 cloudflared
 
-Cloudflare Tunnel daemon for the 5150-lab homelab stack. Routes external traffic securely to internal services without exposing a public IP or opening firewall ports.
+> Cloudflare Tunnel daemon for a self-hosted homelab stack.
+> Routes external traffic securely to internal services — no open ports, no exposed home IP.
 
-## What It Does
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
-- Creates an outbound-only tunnel from the homelab to Cloudflare's edge network
-- Allows external access to internal services via subdomains (e.g. `nextcloud.5150-lab.com`) without port forwarding
-- Works alongside Nginx Proxy Manager — Cloudflare handles external ingress, NPM handles internal routing
-- Eliminates the need for Tailscale split DNS or dynamic DNS workarounds for remote access
+---
 
-## Stack Info
+## 📌 What It Does
+
+- 🔒 Creates an **outbound-only tunnel** from the homelab to Cloudflare's edge — no port forwarding required
+- 🌍 Enables external access to internal services via clean subdomains (`nextcloud.yourdomain.com`)
+- 🤝 Works alongside **Nginx Proxy Manager** — Cloudflare handles external ingress, NPM handles internal routing
+- 🚫 Eliminates the need for Tailscale split DNS or dynamic DNS workarounds for remote access
+
+---
+
+## 🖥️ Stack Info
 
 | Property | Value |
 |---|---|
-| Image | `cloudflare/cloudflared:latest` |
-| Container | `cloudflared` |
-| Network | `proxy` (external) |
-| Host | `192.168.4.200` (M4 Mac mini) |
+| 🐳 Image | `cloudflare/cloudflared:latest` |
+| 📦 Container | `cloudflared` |
+| 🌐 Network | `proxy` (external) |
+| 🖥️ Host | `your-server-ip` |
 
-## Prerequisites
+---
 
-1. A domain managed by Cloudflare (e.g. `5150-lab.com`)
-2. A Cloudflare account with the domain added
-3. A Cloudflare Tunnel created via the dashboard or CLI
+## ✅ Prerequisites
 
-## Setup
+- 🌐 A domain managed by Cloudflare (e.g. `yourdomain.com`)
+- 👤 A Cloudflare account with the domain added
+- 🔑 A Cloudflare Tunnel token (created via dashboard)
 
-### 1. Create the Tunnel (Cloudflare Dashboard)
+---
+
+## 🚀 Setup
+
+### 1️⃣ Create the Tunnel (Cloudflare Dashboard)
 
 1. Go to **Cloudflare Dashboard → Zero Trust → Networks → Tunnels**
 2. Click **Create Tunnel**
-3. Name it (e.g. `5150-lab-tunnel`)
-4. Copy the tunnel token — you'll need it for the compose file
+3. Name it (e.g. `homelab-tunnel`)
+4. Select **Docker** as the environment
+5. Copy the tunnel token — you'll need it for the `.env` file
 
-### 2. Configure Public Hostnames in Cloudflare
+### 2️⃣ Configure Public Hostnames
 
-For each service you want to expose, add a public hostname in the tunnel config:
+For each service to expose, add a public hostname in the tunnel config:
 
-| Subdomain | Service | URL |
+| 🌐 Subdomain | 🛠️ Service | 🔗 Internal URL |
 |---|---|---|
-| `nextcloud` | Nextcloud | `http://192.168.4.200:8080` |
-| `jellyfin` | Jellyfin | `http://192.168.4.200:8096` |
+| `nextcloud.yourdomain.com` | Nextcloud | `http://your-server-ip:8080` |
+| `jellyfin.yourdomain.com` | Jellyfin | `http://your-server-ip:8096` |
 
-> **Note:** Only expose services you intend to be publicly accessible. Keep admin services like Portainer, Grafana, Pi-hole, and Uptime Kuma off the tunnel — access those via Tailscale only.
+> ⚠️ **Only expose services intended to be public.** Admin services like Portainer, Grafana, Pi-hole, and Uptime Kuma should stay off the tunnel — access those via Tailscale or VPN only.
 
-### 3. Deploy
+### 3️⃣ Deploy
 
 ```bash
 docker compose up -d
 ```
 
-## docker-compose.yml
+---
+
+## 📄 docker-compose.yml
 
 ```yaml
 services:
@@ -69,54 +85,67 @@ networks:
     external: true
 ```
 
-## .env
+---
+
+## 🔐 .env
 
 ```env
 TUNNEL_TOKEN=your-tunnel-token-here
 ```
 
-> ⚠️ Never commit `.env` to Git. Add it to `.gitignore`.
+> ⚠️ Never commit `.env` to Git. Add it to `.gitignore` and store the token in a password manager or secrets tracker.
 
-## Architecture
+---
+
+## 🏗️ Architecture
 
 ```
-External User
-     │
-     ▼
-Cloudflare Edge (DNS + Proxy)
-     │
-     ▼
-cloudflared (outbound tunnel)
-     │
-     ▼
-Nginx Proxy Manager (proxy network)
-     │
-     ▼
-Internal Services (Nextcloud, Jellyfin, etc.)
+🌍 External User
+       │
+       ▼
+☁️  Cloudflare Edge  (DNS + Proxy + SSL)
+       │
+       ▼
+🔒 cloudflared  (outbound tunnel — no open ports)
+       │
+       ▼
+🔀 Nginx Proxy Manager  (proxy network, SSL termination)
+       │
+       ▼
+🛠️  Internal Services  (Nextcloud, Jellyfin, etc.)
 ```
 
-## What to Expose vs. Keep Private
+---
 
-| Service | Expose via Tunnel | Access Method |
+## 🔓 What to Expose vs. Keep Private
+
+| Service | Via Tunnel | Access Method |
 |---|---|---|
-| Nextcloud | ✅ Yes | Public via tunnel |
-| Jellyfin | ✅ Yes | Public via tunnel |
-| Portainer | ❌ No | Tailscale only |
-| Grafana | ❌ No | Tailscale only |
-| Pi-hole | ❌ No | Tailscale only |
-| Uptime Kuma | ❌ No | Tailscale only |
-| Home Assistant | ⚠️ Optional | Tailscale preferred |
-| Prometheus | ❌ No | Tailscale only |
+| ☁️ Nextcloud | ✅ Yes | Public via tunnel |
+| 🎬 Jellyfin | ✅ Yes | Public via tunnel |
+| 🐳 Portainer | ❌ No | VPN / Tailscale only |
+| 📊 Grafana | ❌ No | VPN / Tailscale only |
+| 🕳️ Pi-hole | ❌ No | VPN / Tailscale only |
+| 📡 Uptime Kuma | ❌ No | VPN / Tailscale only |
+| 🏠 Home Assistant | ⚠️ Optional | Tailscale preferred |
+| 📈 Prometheus | ❌ No | VPN / Tailscale only |
 
-## Notes
+---
 
-- The tunnel token is sensitive — store it in your secrets tracker and `.env` file only
-- Cloudflare handles SSL automatically for tunnel-exposed services — no cert management needed on the NPM side for those
-- NPM access lists still apply for local network access regardless of tunnel config
-- After setup, update Pi-hole local DNS records if subdomains change
+## 📝 Notes
 
-## Related Stacks
+- 🔑 The tunnel token is sensitive — store in `.env` only, never in the compose file directly
+- 🔒 Cloudflare handles SSL automatically for tunnel-exposed services — no extra cert management needed
+- 🛡️ NPM access lists still apply for local network access regardless of tunnel config
+- 📋 After setup, update your local DNS records (Pi-hole etc.) if any subdomains change
+- 🔄 `--no-autoupdate` is set intentionally — update the image tag manually to control versions
 
-- [`nginx-proxy-manager`](../nginx-proxy-manager/README.md) — internal SSL termination and routing
-- [`nextcloud`](../nextcloud/README.md) — primary service exposed via tunnel
+---
 
+## 🔗 Related Stacks
+
+| Stack | Description |
+|---|---|
+| [`nginx-proxy-manager`](../nginx-proxy-manager/README.md) | 🔀 Internal SSL termination and routing |
+| [`nextcloud`](../nextcloud/README.md) | ☁️ Primary service exposed via tunnel |
+| [`jellyfin`](../jellyfin/README.md) | 🎬 Media server exposed via tunnel |

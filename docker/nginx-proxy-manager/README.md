@@ -229,7 +229,7 @@ sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 ### Nextcloud
 Nextcloud requires additional configuration to work behind a reverse proxy, or it will redirect back to the raw IP address.
 
-Add these lines in your configuation.yml
+Add these lines in your docker-compose.yml
 ```
 OVERWRITEHOST: nextcloud.yourdomain.com
 OVERWRITEPROTOCOL: https

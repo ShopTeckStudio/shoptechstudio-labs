@@ -58,13 +58,26 @@ For each service to expose, add a public hostname in the tunnel config:
 
 > ⚠️ **Only expose services intended to be public.** Admin services like Portainer, Grafana, Pi-hole, and Uptime Kuma should stay off the tunnel — access those via Tailscale or VPN only.
 
-### 3️⃣ Deploy
+## 3️⃣ ⚡ Quick Setup (Copy & Paste)
 
-```bash
-docker compose up -d
+Run on your Docker host:
+
+```
+cd ~/docker
+mkdir cloudflared
+cd cloudflared
+touch docker-compose.yml
+touch .env
+```
+
+Then edit the compose file
+
+```
+nano docker-compose.yml
 ```
 
 ---
+
 
 ## 📄 docker-compose.yml
 
@@ -97,6 +110,13 @@ TUNNEL_TOKEN=your-tunnel-token-here
 
 ---
 
+### 3️⃣ Deploy
+
+```bash
+docker compose up -d
+```
+
+---
 ## 🏗️ Architecture
 
 ```

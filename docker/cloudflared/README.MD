@@ -81,12 +81,15 @@ Input contents from the compose file.
 
 
 
-## 📄 docker-compose.yml
-
-
 ---
 
 ## 🔐 .env
+
+Create the .env file
+
+```
+nano .env
+```
 
 ```env
 TUNNEL_TOKEN=your-tunnel-token-here

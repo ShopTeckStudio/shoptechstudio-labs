@@ -76,27 +76,13 @@ Then edit the compose file
 nano docker-compose.yml
 ```
 
+Input contents from the compose file.
 ---
+
 
 
 ## 📄 docker-compose.yml
 
-```yaml
-services:
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared
-    restart: unless-stopped
-    command: tunnel --no-autoupdate run
-    environment:
-      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
-    networks:
-      - proxy
-
-networks:
-  proxy:
-    external: true
-```
 
 ---
 
